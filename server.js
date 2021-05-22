@@ -1,9 +1,17 @@
 const express = require('express');
+const es6Renderer = require('express-es6-template-engine');
+
+const app = express();
 
 const namesAndCapitals = require('./node_modules/country-json/src/country-by-capital-city.json');
 const populations = require('./node_modules/country-json/src/country-by-population.json');
 
-const app = express();
+// __dirname is root of my project, folder /public will be static location, middleware hint is app.use
+app.use(express.static(__dirname + '/public'));
+
+app.engine('html', es6Renderer);
+app.set('views', 'templates');
+app.set('view engine', 'html');
 
 app.get('/heartbeat', (req, res) => {
   // res.send('Hi I am heartbeat!');
@@ -43,7 +51,7 @@ const handlePopQuery = (minpop, maxpop) => {
 };
 
 app.get('/countries', (req, res) => {
-  let results = namesAndCapitals;
+  let results = [];
   // destructing name = req.query.name, capital = req.query.capital
   let {capital, maxpop, minpop, name} = req.query;
   console.log('!!!!! $$$$$$ The country is !!!!! ****** $$$$$$ =====>', name);
@@ -55,9 +63,17 @@ app.get('/countries', (req, res) => {
     results = handleGeoQuery(capital, name);
   } else if (minpop || maxpop) {
     results = handlePopQuery(minpop, maxpop);
+  // if no query param 
+  } else if (Object.keys(req.query).length === 0){
+    results = namesAndCapitals;
+  } else {
+    results = ['Query param is not recognized.'];
   }
-
-  return res.json(results);
+  res.render('home', {
+    locals: {
+      countries: results
+    }
+  });
 });
 
 app.get('/*', (req, res) => {

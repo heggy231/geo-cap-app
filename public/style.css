@@ -1,1 +1,44 @@
-/* put the CSS solution here */
+* {
+  color: #555;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* layout related */
+.y-wrap {
+  /* 1. set & limit the width, so that I can center items*/
+  width: 90%;
+  /* 2. now that I have width set, I can center */
+  margin: 0 auto;
+}
+
+/* give some breathing room */
+.buffer {
+  padding: 30px 0;
+}
+
+ul {
+  list-style-type: none;
+  display: flex;
+  /* by default flex-wrap: no wrap */
+  flex-wrap: wrap;
+  /* left right margin to be same */
+  justify-content: center;
+}
+
+li {
+  /* #ddd lighter grey */
+  border: 1px solid #ddd;
+  margin: 10px;
+  padding: 10px;
+  /* keep width same for each row*/
+  width: 200px;
+}
+
+.country {
+  color: black;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}

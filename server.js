@@ -1,13 +1,17 @@
 const express = require('express');
 const es6Renderer = require('express-es6-template-engine');
+const morgan = require('morgan');
 
 const app = express();
+const logger = morgan('tiny');
 
 const namesAndCapitals = require('./node_modules/country-json/src/country-by-capital-city.json');
 const populations = require('./node_modules/country-json/src/country-by-population.json');
 
 // __dirname is root of my project, folder /public will be static location, middleware hint is app.use
 app.use(express.static(__dirname + '/public'));
+// morgan log btwn every req, res it will info about them
+app.use(logger);
 
 app.engine('html', es6Renderer);
 app.set('views', 'templates');

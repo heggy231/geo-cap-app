@@ -68,6 +68,67 @@ app.get('/countries/a-e', (req, res) => {
   res.send(namesAE);
 });
 
+app.get('/countries/f-l', (req, res) => {
+  let namesFL = namesAndCapitals.filter(item => {
+    if (
+      item.country.charAt(0) === 'F' ||
+      item.country.charAt(0) === 'G' ||
+      item.country.charAt(0) === 'H' ||
+      item.country.charAt(0) === 'I' ||
+      item.country.charAt(0) === 'J' ||
+      item.country.charAt(0) === 'K' ||
+      item.country.charAt(0) === 'L'
+    ) {
+      return item;
+    }
+  });
+  res.send(namesFL);
+});
+
+app.get('/countries/m-r', (req, res) => {
+  let namesMR = namesAndCapitals.filter(item => {
+    if (
+      item.country.charAt(0) === 'M' ||
+      item.country.charAt(0) === 'N' ||
+      item.country.charAt(0) === 'O' ||
+      item.country.charAt(0) === 'P' ||
+      item.country.charAt(0) === 'Q' ||
+      item.country.charAt(0) === 'R'
+    ) {
+      return item;
+    }
+  });
+  res.send(namesMR);
+});
+
+app.get('/countries/s-v', (req, res) => {
+  let nameSV = namesAndCapitals.filter(item => {
+    if (
+      item.country.charAt(0) === 'S' ||
+      item.country.charAt(0) === 'T' ||
+      item.country.charAt(0) === 'U' ||
+      item.country.charAt(0) === 'V' 
+    ) {
+      return item;
+    }
+  });
+  res.send(nameSV);
+});
+
+app.get('/countries/w-z', (req, res) => {
+  let nameWZ = namesAndCapitals.filter(item => {
+    if (
+      item.country.charAt(0) === 'W' ||
+      item.country.charAt(0) === 'X' ||
+      item.country.charAt(0) === 'Y' ||
+      item.country.charAt(0) === 'Z' 
+    ) {
+      return item;
+    }
+  });
+  res.send(nameWZ);
+});
+
 app.get('/countries', (req, res) => {
   let results = [];
   // destructing name = req.query.name, capital = req.query.capital

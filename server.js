@@ -50,6 +50,25 @@ const handlePopQuery = (minpop, maxpop) => {
   }
 };
 
+app.get('/countries/a-e', (req, res) => {
+  // filter only countries name start with a 
+  let namesAE = namesAndCapitals.map(item => {
+    console.log('before!!!!!!! $$$$$$$$', item.country);
+    if (
+      item.country.charAt(0) === 'A' ||
+      item.country.charAt(0) === 'B' ||
+      item.country.charAt(0) === 'C' ||
+      item.country.charAt(0) === 'D' ||
+      item.country.charAt(0) === 'E'
+    ) {
+      console.log('after!!!!!!! $$$$$$$$', item.country);
+      return item;
+    }
+  });
+
+  res.send(namesAE);
+});
+
 app.get('/countries', (req, res) => {
   let results = [];
   // destructing name = req.query.name, capital = req.query.capital

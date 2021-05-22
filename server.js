@@ -52,7 +52,7 @@ const handlePopQuery = (minpop, maxpop) => {
 
 app.get('/countries/a-e', (req, res) => {
   // filter only countries name start with a 
-  let namesAE = namesAndCapitals.map(item => {
+  let namesAE = namesAndCapitals.filter(item => {
     console.log('before!!!!!!! $$$$$$$$', item.country);
     if (
       item.country.charAt(0) === 'A' ||
@@ -65,7 +65,6 @@ app.get('/countries/a-e', (req, res) => {
       return item;
     }
   });
-
   res.send(namesAE);
 });
 
